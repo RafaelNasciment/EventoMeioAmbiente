@@ -7,13 +7,26 @@ import java.util.Date;
 public class Palestra implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int id_palestra;
+	private int idPalestra;
 	private int tipo;
 	private String tema;
 	private Time horario;
-	private int qnt_vagas;
+	private int qntVagas;
 	private String descricao;
 	private Date data;
+	
+	public int getIdPalestra() {
+		return idPalestra;
+	}
+	public void setIdPalestra(int idPalestra) {
+		this.idPalestra = idPalestra;
+	}
+	public int getQntVagas() {
+		return qntVagas;
+	}
+	public void setQntVagas(int qntVagas) {
+		this.qntVagas = qntVagas;
+	}
 	public int getTipo() {
 		return tipo;
 	}
@@ -32,12 +45,7 @@ public class Palestra implements Serializable {
 	public void setHorario(Time horario) {
 		this.horario = horario;
 	}
-	public int getQnt_vagas() {
-		return qnt_vagas;
-	}
-	public void setQnt_vagas(int qnt_vagas) {
-		this.qnt_vagas = qnt_vagas;
-	}
+	
 	public String getDescricao() {
 		return descricao;
 	}

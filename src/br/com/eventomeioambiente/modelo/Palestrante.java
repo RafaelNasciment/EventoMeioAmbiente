@@ -4,10 +4,17 @@ import java.io.Serializable;
 
 public class Palestrante implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int palestrante;
+	private int idPalestrante;
 	private String nome;
 	private String descricao;
 	private String curriculo;
+	
+	public int getIdPalestrante() {
+		return idPalestrante;
+	}
+	public void setIdPalestrante(int idPalestrante) {
+		this.idPalestrante = idPalestrante;
+	}
 	public String getNome() {
 		return nome;
 	}

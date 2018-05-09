@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Aluno implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private int id_aluno;
+	private int idAluno;
 	private String matricula;
 	private String senha;
 	private String cpf;
@@ -14,6 +14,14 @@ public class Aluno implements Serializable{
 	private String email;
 	private String telefone;
 	private int qrcode;
+	
+		
+	public int getIdAluno() {
+		return idAluno;
+	}
+	public void setIdAluno(int idAluno) {
+		this.idAluno = idAluno;
+	}
 	public String getMatricula() {
 		return matricula;
 	}
