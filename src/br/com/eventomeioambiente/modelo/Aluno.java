@@ -1,6 +1,7 @@
 package br.com.eventomeioambiente.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 
@@ -13,7 +14,8 @@ public class Aluno implements Serializable{
 	private String nome;
 	private String email;
 	private String telefone;
-	private int qrcode;
+	private String qrcode;
+	List<Minicurso> minicursos;
 	
 		
 	public int getIdAluno() {
@@ -58,11 +60,18 @@ public class Aluno implements Serializable{
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public int getQrcode() {
+	public String getQrcode() {
 		return qrcode;
 	}
-	public void setQrcode(int qrcode) {
+	public void setQrcode(String qrcode) {
 		this.qrcode = qrcode;
 	}
+	public List<Minicurso> getMinicursos() {
+		return minicursos;
+	}
+	public void setMinicursos(List<Minicurso> minicursos) {
+		this.minicursos = minicursos;
+	}
+	
 		
 }

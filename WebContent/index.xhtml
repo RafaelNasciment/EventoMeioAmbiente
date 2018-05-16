@@ -9,10 +9,9 @@
 </h:head>
 <h:body bgcolor="red">
 	
-	
 	<div style="background-color: #FFFFFF">
 		<img
-			src="#{facesContext.externalContext.request.contextPath}/img/logoifma.png"
+			src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
 			height="230px" width="1100px" />
 	</div>
 	<p:growl id="messages" />
@@ -27,13 +26,13 @@
 				<h:panelGrid columns="2" cellpadding="5">
 
 					<h:outputLabel value="Matrícula:" />
-					<p:inputText value="#{usuarioBean.usuarioBusca.matricula}" />
+					<p:inputText value="#{alunoBean.alunoBusca.matricula}" />
 
 					<h:outputLabel value="Senha:" />
-					<p:password value="#{usuarioBean.usuarioBusca.senha}" />
+					<p:password value="#{alunoBean.alunoBusca.senha}" />
 
 
-					<p:commandButton action="#{usuarioBean.buscarUsuario}"
+					<p:commandButton action="#{alunoBean.buscarAluno}"
 						value="Login" ajax="false" update="growl" />
 
 				</h:panelGrid>

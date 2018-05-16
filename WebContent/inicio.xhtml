@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Início</title>
+</h:head>
+<h:body>
+<div style="background-color: #FFFFFF">
+			<img
+			src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
+			height="230px" width="1100px" />
+	</div>
+	<h:form>
+		
+		<p:growl id="messages" />
+
+		<p:menubar>
+
+			
+			<f:facet name="options">
+				<p:outputLabel value="Usuário logado: " />
+				<p:outputLabel value="#{InicioBean.alunologado.nome}   " />
+
+				<p:commandButton ajax="false" action="#{InicioBean.logout}"
+					value="Logout" icon="ui-icon-extlink" />
+			</f:facet>
+		</p:menubar>
+		<p:accordionPanel value="#{InicioBean.minicursos}" var="minicurso">
+	        <p:tab title="#{minicurso.palestrante.nome}">
+	        </p:tab>
+    	</p:accordionPanel>
+	</h:form>
+
+</h:body>
+</html>

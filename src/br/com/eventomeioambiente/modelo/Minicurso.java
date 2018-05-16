@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-public class Palestra implements Serializable {
+public class Minicurso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int idPalestra;
@@ -14,7 +14,14 @@ public class Palestra implements Serializable {
 	private int qntVagas;
 	private String descricao;
 	private Date data;
+	private Palestrante palestrante;
 	
+	public Palestrante getPalestrante() {
+		return palestrante;
+	}
+	public void setPalestrante(Palestrante palestrante) {
+		this.palestrante = palestrante;
+	}
 	public int getIdPalestra() {
 		return idPalestra;
 	}
