@@ -1,0 +1,43 @@
+Projeto Com Banco de Dados para a Semana de Meio Ambiente
+
+Create table aluno(
+    id_aluno serial,
+    matricula varchar(30) not null,
+    senha varchar(10) not null,
+    cpf varchar(11) not null,
+    nome varchar(100) not null,
+    email varchar(50) not null, 
+    telefone varchar(30) not null, 
+    qrcode varchar(20), 
+    primary key(id_aluno)    
+)
+
+create table palestrante(
+    id_palestrante serial,
+    nome varchar(100) not null,
+    descricao varchar(300) not null,
+    curriculo varchar(100) not null,
+    primary key (id_palestrante)
+)
+
+create table palestra_minicurso(
+    id_palestra_minicurso serial,
+    id_palestrante int not null,
+    id_tipo int not null,
+    tema varchar(100) not null,
+    horario time not null,
+    data date not null,
+    qnt_vagas int,
+    descricao varchar(200) not null,
+    PRIMARY key (id_palestra_minicurso),
+    FOREIGN key (id_palestrante) REFERENCES palestrante (id_palestrante)
+)
+
+create table aluno_palestra(
+    id_aluno int not null,
+    id_palestra int not null,
+    PRIMARY key (id_aluno, id_palestra),
+    foreign key (id_aluno) REFERENCES aluno(id_aluno),
+    foreign key (id_palestra) REFERENCES palestra_minicurso (id_palestra_minicurso)
+)
+
