@@ -41,3 +41,5 @@ create table aluno_palestra(
     foreign key (id_palestra) REFERENCES palestra_minicurso (id_palestra_minicurso)
 )
 
+ALTER TABLE palestrante ADD foto varchar(15)
+
