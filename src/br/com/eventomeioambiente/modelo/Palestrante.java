@@ -1,6 +1,11 @@
 package br.com.eventomeioambiente.modelo;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 public class Palestrante implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -8,6 +13,7 @@ public class Palestrante implements Serializable {
 	private String nome;
 	private String descricao;
 	private String curriculo;
+	private String foto;
 	
 	public int getIdPalestrante() {
 		return idPalestrante;
@@ -33,4 +39,12 @@ public class Palestrante implements Serializable {
 	public void setCurriculo(String curriculo) {
 		this.curriculo = curriculo;
 	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	
+	
 }

@@ -8,18 +8,19 @@
 	<title>Início</title>
 </h:head>
 <h:body>
-<div style="background-color: #FFFFFF">
-			<img
+	<div style="background-color: #FFFFFF">
+		<img
 			src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
 			height="230px" width="1100px" />
+
 	</div>
 	<h:form>
-		
+
 		<p:growl id="messages" />
 
 		<p:menubar>
 
-			
+
 			<f:facet name="options">
 				<p:outputLabel value="Usuário logado: " />
 				<p:outputLabel value="#{InicioBean.alunologado.nome}   " />
@@ -28,10 +29,60 @@
 					value="Logout" icon="ui-icon-extlink" />
 			</f:facet>
 		</p:menubar>
-		<p:accordionPanel value="#{InicioBean.minicursos}" var="minicurso">
-	        <p:tab title="#{minicurso.palestrante.nome}">
-	        </p:tab>
-    	</p:accordionPanel>
+
+		<div class="ui-g">
+			<div class="ui-g-12 ui-md-2"></div>
+			<div class="ui-g-12 ui-md-10 ui-g-nopad">
+				<div class="ui-g-12">
+					<p:outputLabel value="Minicursos/Oficinas:" />
+				</div>
+				<div class="ui-g-12 ui-g-nopad">
+					<div>
+						<p:accordionPanel value="#{InicioBean.minicursos}" var="minicurso">
+							<p:tab title="#{minicurso.tema}">
+								<h:panelGrid columns="2" cellpadding="5">
+									<p:selectOneRadio id="select">
+										<f:selectItem />
+									</p:selectOneRadio>
+									<img
+										src="#{facesContext.externalContext.request.contextPath}/img/#{minicurso.palestrante.foto}" />
+
+									<h:outputText value="#{minicurso.palestrante.nome}" />
+									<p:commandLink value="#{minicurso.palestrante.curriculo}" />
+								</h:panelGrid>
+								<h:outputText value="#{minicurso.palestrante.descricao}" />
+								<p:separator />
+								<h:outputText value="#{minicurso.descricao}" />
+								<p:separator />
+								<h:panelGrid columns="2" cellpadding="5">
+
+
+									<h:outputText value="#{minicurso.data}" />
+									<h:outputText value="#{minicurso.horario}" />
+									<h:outputText value="#{minicurso.qntVagas} vagas" />
+								</h:panelGrid>
+
+
+							</p:tab>
+
+						</p:accordionPanel>
+						<p:separator/>
+						<div align="center">
+							<p:commandButton value="Salvar Inscrição" action="#{InicioBean.salvarInscricao}" ajax="false"/>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="ui-g-12">
+				<div align="center">
+					<p:outputLabel
+						value="Desenvolvido pela turma de Informática 2016.2 - Subsequente" />
+				</div>
+			</div>
+		</div>
+
+
 	</h:form>
 
 </h:body>

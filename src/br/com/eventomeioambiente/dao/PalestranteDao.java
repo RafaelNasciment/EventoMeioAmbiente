@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 import br.com.eventomeioambiente.conexao.Conexao;
 import br.com.eventomeioambiente.modelo.Palestrante;
 
@@ -43,6 +42,7 @@ public class PalestranteDao {
 				p.setNome(result.getString("nome"));				
 				p.setDescricao(result.getString("descricao"));
 				p.setCurriculo(result.getString("curriculo"));
+				p.setFoto(result.getString("foto"));
 				
 			}
 			

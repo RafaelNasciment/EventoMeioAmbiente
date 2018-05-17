@@ -18,7 +18,7 @@ public class MinicursoDao {
 		Conexao c = new Conexao();
 		Connection cc = c.conectar();
 		List<Minicurso> minicursos = new ArrayList<Minicurso>();
-		String consulta = "SELECT * FROM palestra_minicurso";
+		String consulta = "SELECT * FROM palestra_minicurso order by id_tipo";
 		
 		Statement stm = (Statement) cc.createStatement();
 		ResultSet result = stm.executeQuery(consulta);
@@ -30,6 +30,7 @@ public class MinicursoDao {
 			m.setTipo(result.getInt("id_tipo"));
 			m.setTema(result.getString("tema"));
 			m.setData(result.getDate("data"));
+			m.setHorario(result.getTime("horario"));
 			m.setQntVagas(result.getInt("qnt_vagas"));
 			m.setDescricao(result.getString("descricao"));
 		    

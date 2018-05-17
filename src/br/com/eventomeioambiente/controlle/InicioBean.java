@@ -49,7 +49,9 @@ private static final long serialVersionUID = 1L;
 		return "/index";
 	}
 
-	
+	public String salvarInscricao(){
+		return "/confirmacao";
+	}
 
 	public Aluno getAlunologado() {
 		return alunologado;
