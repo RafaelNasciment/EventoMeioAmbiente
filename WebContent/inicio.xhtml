@@ -9,10 +9,16 @@
 </h:head>
 <h:body>
 	<div style="background-color: #FFFFFF">
-		<img
-			src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
-			height="230px" width="1100px" />
+		<h:panelGrid columns="3" cellpadding="5">
+			<img
+				src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
+				height="230px" width="1100px" />
+			<p:outputLabel value="      " />
 
+			<img
+				src="#{facesContext.externalContext.request.contextPath}/img/logoifma.png"
+				height="200px" width="620px" />
+		</h:panelGrid>
 	</div>
 	<h:form>
 
@@ -66,9 +72,10 @@
 							</p:tab>
 
 						</p:accordionPanel>
-						<p:separator/>
+						<p:separator />
 						<div align="center">
-							<p:commandButton value="Salvar Inscrição" action="#{InicioBean.salvarInscricao}" ajax="false"/>
+							<p:commandButton value="Salvar Inscrição"
+								action="#{InicioBean.salvarInscricao}" ajax="false" />
 						</div>
 					</div>
 

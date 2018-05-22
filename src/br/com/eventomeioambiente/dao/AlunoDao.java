@@ -50,4 +50,17 @@ public class AlunoDao {
 		c.desconectar();
 		return u;
 	}
+	public int iserirMinicursoAluno(Aluno aluno) throws SQLException{
+		Conexao c = new Conexao();
+		Connection cc = c.conectar();
+
+		String consulta = "Insert into aluno_palestra(id_aluno, id_palestra)values("
+				+ aluno.getIdAluno()+ " ," + aluno.getMinicurso().getIdPalestra()
+				+ ")";
+
+		Statement stm = (Statement) cc.createStatement();
+		int result = stm.executeUpdate(consulta);
+
+		return result;
+	}
 }

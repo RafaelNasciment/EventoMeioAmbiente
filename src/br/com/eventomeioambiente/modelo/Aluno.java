@@ -15,7 +15,7 @@ public class Aluno implements Serializable{
 	private String email;
 	private String telefone;
 	private String qrcode;
-	List<Minicurso> minicursos;
+	Minicurso minicurso;
 	
 		
 	public int getIdAluno() {
@@ -66,11 +66,11 @@ public class Aluno implements Serializable{
 	public void setQrcode(String qrcode) {
 		this.qrcode = qrcode;
 	}
-	public List<Minicurso> getMinicursos() {
-		return minicursos;
+	public Minicurso getMinicurso() {
+		return minicurso;
 	}
-	public void setMinicursos(List<Minicurso> minicursos) {
-		this.minicursos = minicursos;
+	public void setMinicurso(Minicurso minicurso) {
+		this.minicurso = minicurso;
 	}
 	
 		

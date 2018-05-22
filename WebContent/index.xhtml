@@ -8,14 +8,22 @@
 	<title>Login</title>
 </h:head>
 <h:body bgcolor="red">
-	
+
 	<div style="background-color: #FFFFFF">
-		<img
-			src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
-			height="230px" width="1100px" />
+		<h:panelGrid columns="3" cellpadding="5">
+
+			<img
+				src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
+				height="230px" width="1100px" />
+			<p:outputLabel value="      " />
+
+			<img
+				src="#{facesContext.externalContext.request.contextPath}/img/logoifma.png"
+				height="200px" width="620px" />
+		</h:panelGrid>
 	</div>
 	<p:growl id="messages" />
-	
+
 
 	<div align="center">
 		<h:form>
@@ -32,8 +40,8 @@
 					<p:password value="#{alunoBean.alunoBusca.senha}" />
 
 
-					<p:commandButton action="#{alunoBean.buscarAluno}"
-						value="Login" ajax="false" update="growl" />
+					<p:commandButton action="#{alunoBean.buscarAluno}" value="Login"
+						ajax="false" update="growl" />
 
 				</h:panelGrid>
 			</p:panel>
