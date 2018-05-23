@@ -3,6 +3,7 @@ package br.com.eventomeioambiente.controlle;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,9 +32,15 @@ public class InicioBean implements Serializable {
 	Minicurso minicursoSelecionado;
 	static String codigoQr;
 	boolean isMinicursoSelecionado = false;
+	private List<String> images;
 
 	@PostConstruct
 	public void init() {
+		
+		images = new ArrayList<String>();
+        for (int i = 1; i <= 5; i++) {
+            images.add("sma" + i + ".jpg");
+        }
 
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext()
@@ -185,5 +192,14 @@ public class InicioBean implements Serializable {
 	public boolean getIsMinicursoSelecionado() {
 		return isMinicursoSelecionado;
 	}
+
+	public List<String> getImages() {
+		return images;
+	}
+
+	public void setImages(List<String> images) {
+		this.images = images;
+	}
+	
 
 }

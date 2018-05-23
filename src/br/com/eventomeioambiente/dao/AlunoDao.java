@@ -30,7 +30,7 @@ public class AlunoDao {
 		Conexao c = new Conexao();
 		Connection cc = c.conectar();
 
-		String consulta = "SELECT *  FROM aluno WHERE matricula ='"
+		String consulta = "SELECT *  FROM aluno WHERE cpf ='"
 				+ matricula + "' and senha = '" + senha + "'";
 
 		Aluno u = null;

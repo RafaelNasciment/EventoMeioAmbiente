@@ -35,12 +35,19 @@
 			</f:facet>
 		</p:menubar>
 
+
 		<div class="ui-g">
 
 
 			<div class="ui-g-12 ui-md-2"></div>
 			<div class="ui-g-12 ui-md-10 ui-g-nopad">
 				<div class="ui-g-12">
+					<p:imageSwitch effect="shuffle">
+						<ui:repeat value="#{InicioBean.images}" var="image">
+							<p:graphicImage name="/img/imgevento/#{image}" />
+						</ui:repeat>
+					</p:imageSwitch>
+
 					<p:outputLabel value="Minicursos/Oficinas:" />
 					<p:messages id="messages" showDetail="true" closable="true">
 
@@ -75,8 +82,10 @@
 								</h:panelGrid>
 								<h:form>
 									<div align="center">
-										<p:commandButton value="Selecionar Minicurso" update="selecionado2"
-											actionListener="#{InicioBean.adicionarMinicurso}" ajax="false">
+										<p:commandButton value="Selecionar Minicurso"
+											update="selecionado2"
+											actionListener="#{InicioBean.adicionarMinicurso}"
+											ajax="false">
 											<f:setPropertyActionListener
 												target="#{InicioBean.minicursoSelecionado}"
 												value="#{minicurso}" />
@@ -88,10 +97,13 @@
 
 						</p:accordionPanel>
 						<p:separator />
-						<p:panel id="selecionado2" rendered="#{InicioBean.isMinicursoSelecionado}">
-							<p:outputLabel 
+						<p:panel id="selecionado2"
+							rendered="#{InicioBean.isMinicursoSelecionado}">
+							<p:outputLabel
 								value="Minicurso Selecionado: #{InicioBean.minicursoSelecionado.tema}" />
-							<p:commandButton value="Excluir" icon="ui-icon-close" ajax="false" update="selecionado2" action="#{InicioBean.excluirMinicursoSelecionado}"/>
+							<p:commandButton value="Excluir" icon="ui-icon-close"
+								ajax="false" update="selecionado2"
+								action="#{InicioBean.excluirMinicursoSelecionado}" />
 						</p:panel>
 						<div align="center">
 							<p:commandButton value="Salvar Inscrição" style="margin-top:10px"
