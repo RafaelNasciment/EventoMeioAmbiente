@@ -18,7 +18,7 @@ public class MinicursoDao {
 		Conexao c = new Conexao();
 		Connection cc = c.conectar();
 		List<Minicurso> minicursos = new ArrayList<Minicurso>();
-		String consulta = "SELECT * FROM palestra_minicurso order by id_tipo";
+		String consulta = "SELECT * FROM palestra_minicurso order by qnt_vagas";
 		
 		Statement stm = (Statement) cc.createStatement();
 		ResultSet result = stm.executeQuery(consulta);
@@ -42,4 +42,17 @@ public class MinicursoDao {
 	return minicursos;	
 	}
 
+	public int atualizarVagas(Minicurso minicurso) throws SQLException{
+		Conexao c = new Conexao();
+		Connection cc = c.conectar();
+		
+		String atualizar = "update palestra_minicurso set qnt_vagas = (qnt_vagas - 1) where id_palestra_minicurso = "+minicurso.getIdPalestra();
+		
+		Statement stm = (Statement)cc.createStatement();
+		int result = stm.executeUpdate(atualizar);
+		
+		c.desconectar();
+		return result;
+	}
+	
 }

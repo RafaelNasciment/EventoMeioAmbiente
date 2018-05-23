@@ -44,11 +44,15 @@ public class AlunoBean implements Serializable{
 				return "/inicio";
 			}else{
 				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("mensagemErro", new FacesMessage("Usuário ou Senha incorretos,tente novamente"));
+				ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Usuário ou Senha incorretos,tente novamente!", ""));
+				
 			}
 		}catch(Exception e){
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("mensagemErro", new FacesMessage("Erro ao autenticar o usuário"));
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+				"Erro ao autenticar o usuário", ""));
+			
 		}
 		return null;
 	}

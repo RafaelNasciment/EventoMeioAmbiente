@@ -41,6 +41,7 @@ public class AlunoDao {
 
 		while (result.next()) {
 			u = new Aluno();
+			u.setIdAluno(result.getInt("id_aluno"));
 			u.setMatricula(result.getString("matricula"));
 			u.setSenha(result.getString("senha"));
 			u.setNome(result.getString("nome"));
@@ -62,5 +63,27 @@ public class AlunoDao {
 		int result = stm.executeUpdate(consulta);
 
 		return result;
+	}
+	
+	public boolean possuiInscricao(Aluno aluno) throws SQLException{
+		Conexao c = new Conexao();
+		Connection cc = c.conectar();
+
+		String consulta = "SELECT count(*) as qnt FROM aluno_palestra WHERE id_aluno ="
+				+ aluno.getIdAluno();
+
+		int qnt=0;
+
+		// Usada para matricular as instruções SQL
+		Statement stm = (Statement) cc.createStatement();
+		ResultSet result = stm.executeQuery(consulta);
+
+		while (result.next()) {
+			qnt = result.getInt("qnt");
+		}
+		c.desconectar();
+		if(qnt > 0) return true;
+		else return false;
+		
 	}
 }

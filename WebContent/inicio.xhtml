@@ -10,19 +10,18 @@
 <h:body>
 	<div style="background-color: #FFFFFF">
 		<h:panelGrid columns="3" cellpadding="5">
+
 			<img
 				src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
-				height="230px" width="1100px" />
+				height="200px" width="900px" />
 			<p:outputLabel value="      " />
 
 			<img
 				src="#{facesContext.externalContext.request.contextPath}/img/logoifma.png"
-				height="200px" width="620px" />
+				height="110px" width="420" />
 		</h:panelGrid>
 	</div>
 	<h:form>
-
-		<p:growl id="messages" />
 
 		<p:menubar>
 
@@ -37,24 +36,31 @@
 		</p:menubar>
 
 		<div class="ui-g">
+
+
 			<div class="ui-g-12 ui-md-2"></div>
 			<div class="ui-g-12 ui-md-10 ui-g-nopad">
 				<div class="ui-g-12">
 					<p:outputLabel value="Minicursos/Oficinas:" />
+					<p:messages id="messages" showDetail="true" closable="true">
+
+					</p:messages>
 				</div>
 				<div class="ui-g-12 ui-g-nopad">
+
 					<div>
+
 						<p:accordionPanel value="#{InicioBean.minicursos}" var="minicurso">
+
 							<p:tab title="#{minicurso.tema}">
 								<h:panelGrid columns="2" cellpadding="5">
-									<p:selectOneRadio id="select">
-										<f:selectItem />
-									</p:selectOneRadio>
 									<img
-										src="#{facesContext.externalContext.request.contextPath}/img/#{minicurso.palestrante.foto}" />
+										src="#{facesContext.externalContext.request.contextPath}/img/#{minicurso.palestrante.foto}"
+										width="100px" />
 
 									<h:outputText value="#{minicurso.palestrante.nome}" />
 									<p:commandLink value="#{minicurso.palestrante.curriculo}" />
+
 								</h:panelGrid>
 								<h:outputText value="#{minicurso.palestrante.descricao}" />
 								<p:separator />
@@ -65,16 +71,30 @@
 
 									<h:outputText value="#{minicurso.data}" />
 									<h:outputText value="#{minicurso.horario}" />
-									<h:outputText value="#{minicurso.qntVagas} vagas" />
+									<h:outputText value="#{minicurso.qntVagas} vagas disponíveis" />
 								</h:panelGrid>
-
+								<h:form>
+									<div align="center">
+										<p:commandButton value="Selecionar Minicurso" update="selecionado2"
+											actionListener="#{InicioBean.adicionarMinicurso}" ajax="false">
+											<f:setPropertyActionListener
+												target="#{InicioBean.minicursoSelecionado}"
+												value="#{minicurso}" />
+										</p:commandButton>
+									</div>
+								</h:form>
 
 							</p:tab>
 
 						</p:accordionPanel>
 						<p:separator />
+						<p:panel id="selecionado2" rendered="#{InicioBean.isMinicursoSelecionado}">
+							<p:outputLabel 
+								value="Minicurso Selecionado: #{InicioBean.minicursoSelecionado.tema}" />
+							<p:commandButton value="Excluir" icon="ui-icon-close" ajax="false" update="selecionado2" action="#{InicioBean.excluirMinicursoSelecionado}"/>
+						</p:panel>
 						<div align="center">
-							<p:commandButton value="Salvar Inscrição"
+							<p:commandButton value="Salvar Inscrição" style="margin-top:10px"
 								action="#{InicioBean.salvarInscricao}" ajax="false" />
 						</div>
 					</div>
