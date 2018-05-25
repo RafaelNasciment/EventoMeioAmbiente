@@ -5,12 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Login</title>
+	<title>Login - Semana do Meio Ambiente</title>
+	
 </h:head>
 <h:body>
 
 	<div class="ui-fluid">
-		<h:panelGrid columns="3" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
+		<h:panelGrid columns="3" columnClasses="ui-grid-col-2,ui-grid-col-10"
+			layout="grid" styleClass="ui-panelgrid-blank">
 
 			<img
 				src="#{facesContext.externalContext.request.contextPath}/img/Logo.gif"
@@ -19,7 +21,7 @@
 
 			<img
 				src="#{facesContext.externalContext.request.contextPath}/img/logoifma.png"
-				height="110px" width="420"/>
+				height="110px" width="420" />
 		</h:panelGrid>
 	</div>
 	<p:growl id="messages" />
@@ -45,6 +47,20 @@
 
 				</h:panelGrid>
 			</p:panel>
+			<div align="center">
+				<p:outputLabel style="font-size:12px"
+					value="Desenvolvido pela turma de Informática 2016.2 - Subsequente" />
+				<br />
+				<p:outputLabel style="font-size:12px" value="Carleane Sousa" />
+				<br />
+				<p:outputLabel style="font-size:12px" value="Eliane Silva" />
+				<br />
+				<p:outputLabel style="font-size:12px" value="Janiele Matos" />
+				<br />
+				<p:outputLabel style="font-size:12px" value="Jaqueline Barros" />
+				<br />
+				<p:outputLabel style="font-size:12px" value="Rafael Oliveira" />
+			</div>
 		</h:form>
 	</div>
 </h:body>

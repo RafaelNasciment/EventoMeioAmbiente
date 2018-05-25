@@ -10,16 +10,18 @@ import java.util.Random;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+
+import org.primefaces.event.TabChangeEvent;
 
 import br.com.eventomeioambiente.dao.AlunoDao;
 import br.com.eventomeioambiente.dao.MinicursoDao;
 import br.com.eventomeioambiente.modelo.Aluno;
 import br.com.eventomeioambiente.modelo.Minicurso;
 
-@ViewScoped
+@SessionScoped
 @ManagedBean(name = "InicioBean")
 public class InicioBean implements Serializable {
 
@@ -36,11 +38,11 @@ public class InicioBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		
+
 		images = new ArrayList<String>();
-        for (int i = 1; i <= 5; i++) {
-            images.add("sma" + i + ".jpg");
-        }
+		for (int i = 1; i <= 5; i++) {
+			images.add("sma" + i + ".jpg");
+		}
 
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext()
@@ -77,56 +79,59 @@ public class InicioBean implements Serializable {
 		return "/index";
 	}
 
-	public String adicionarMinicurso() {
-		return null;
-	}
-
 	public String salvarInscricao() {
-		if (minicursoSelecionado.getQntVagas() > 0) {
-			alunologado.setMinicurso(minicursoSelecionado);
-			
-			String qr = geraStringAleatoria();
-			alunologado.setQrcode(qr);
+		if (minicursoSelecionado.getIdPalestra() != 0) {
+			if (minicursoSelecionado.getQntVagas() > 0) {
+				alunologado.setMinicurso(minicursoSelecionado);
 
-			try {
+				String qr = geraStringAleatoria();
+				alunologado.setQrcode(qr);
 
-				if (!alunoDao.possuiInscricao(alunologado)) {
-					
-					minicursoDao.atualizarVagas(minicursoSelecionado);
-					alunoDao.atualizaQrcode(alunologado);
-					int i = alunoDao.iserirMinicursoAluno(alunologado);
-					if (i != 0) {
-						return "/confirmacao";
+				try {
+
+					if (!alunoDao.possuiInscricao(alunologado)) {
+
+						minicursoDao.atualizarVagas(minicursoSelecionado);
+						alunoDao.atualizaQrcode(alunologado);
+						int i = alunoDao.iserirMinicursoAluno(alunologado);
+						if (i != 0) {
+							return "/confirmacao";
+						} else {
+
+							FacesContext ctx = FacesContext
+									.getCurrentInstance();
+							ctx.addMessage(null, new FacesMessage(
+									FacesMessage.SEVERITY_ERROR,
+									"Erro ao incluir minicurso", ""));
+						}
 					} else {
-
 						FacesContext ctx = FacesContext.getCurrentInstance();
-						ctx.addMessage(null, new FacesMessage(
-								FacesMessage.SEVERITY_ERROR,
-								"Erro ao incluir minicurso", ""));
+						ctx.addMessage(
+								null,
+								new FacesMessage(
+										FacesMessage.SEVERITY_WARN,
+										"Já existe uma inscrição realizada para esse usuário!",
+										""));
+
 					}
-				} else {
-					FacesContext ctx = FacesContext.getCurrentInstance();
-					ctx.addMessage(
-							null,
-							new FacesMessage(
-									FacesMessage.SEVERITY_WARN,
-									"Já existe uma inscrição realizada para esse usuário!",
-									""));
 
+				} catch (SQLException e) {
+
+					e.printStackTrace();
 				}
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
+			} else {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage(null, new FacesMessage(
+						FacesMessage.SEVERITY_WARN,
+						"Minicurso selecionado não possui vagas disponíveis",
+						""));
 			}
-		}else{
+		} else {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage(
-					null,
-					new FacesMessage(
-							FacesMessage.SEVERITY_WARN,
-							"Minicurso selecionado não possui vagas disponíveis",
-							""));
+			ctx.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_WARN,
+					"Selecione um minicurso primeiro!",
+					""));
 		}
 		return null;
 	}
@@ -200,6 +205,9 @@ public class InicioBean implements Serializable {
 	public void setImages(List<String> images) {
 		this.images = images;
 	}
-	
+
+	public void onTabChange(TabChangeEvent event) {
+		System.out.println(event.getTab().getId());
+	}
 
 }

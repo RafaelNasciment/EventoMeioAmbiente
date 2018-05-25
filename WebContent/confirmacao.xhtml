@@ -9,7 +9,7 @@
 </h:head>
 <h:body bgcolor="red">
 	<div align="center">
-		<p:panel style="width:500px; height:400px" id="print">
+		<p:panel style="width:500px; height:450px" id="print">
 
 			<div align="left">
 				<h:panelGrid columns="3" cellpadding="5">
@@ -26,7 +26,9 @@
 				<h:panelGrid columns="1" cellpadding="5">
 					<p:outputLabel value="Participante: #{InicioBean.alunologado.nome}" />
 					<p:outputLabel
-						value="Minicurso: #{InicioBean.alunologado.minicurso.tema}" />
+						value="Minicurso/Oficina: #{InicioBean.alunologado.minicurso.tema}" />
+						<p:outputLabel
+						value="Prof. Responsável: #{InicioBean.alunologado.minicurso.palestrante.nome}" />
 				</h:panelGrid>
 			</div>
 			<p:barcode value="#{InicioBean.alunologado.qrcode}" type="qr"
@@ -35,7 +37,7 @@
 	</div>
 	<div align="center">
 		<p:commandButton value="Imprimir confirmação de inscrição" type="button" icon="ui-icon-print"
-			style="display:block;margin-bottom: 20px; margin-top:30px">
+			style="display:block;margin-bottom: 20px; margin-top:30px; background-color: #3CB371">
 			<p:printer target="print" />
 		</p:commandButton>
 	</div>
